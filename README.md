@@ -1,6 +1,6 @@
 # github_runner
 
-[![CI](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml)
+[![CI](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml)
 ![Language](https://img.shields.io/badge/Language-Bash-blue?style=flat-square)
 ![Testing](https://img.shields.io/badge/Testing-Bats-orange?style=flat-square)
 ![ShellCheck](https://img.shields.io/badge/ShellCheck-Compliant-brightgreen?style=flat-square)
@@ -33,7 +33,7 @@
 ## TL;DR
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 gh auth login --scopes admin:org        # if not already
 
 ./script/init.sh <your-org>             # prep host + register first runner
@@ -333,7 +333,7 @@ name(s) — they are placeholders, not literal values. Additional runners are
 added with `script/add-runner.sh`:
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/install-deps.sh                # install gh/jq/curl/sudo + gh auth login
                                         # (skip if already set up; Docker+NVIDIA must pre-exist)
 
@@ -422,7 +422,7 @@ Remove). See [Troubleshooting](#troubleshooting) for stuck states.
 After machine loss / reformat:
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/init.sh <your-org>
 ./script/add-runner.sh org <other-org>
 ```

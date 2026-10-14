@@ -1,6 +1,6 @@
 # github_runner
 
-[![CI](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml)
+[![CI](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml)
 ![Language](https://img.shields.io/badge/Language-Bash-blue?style=flat-square)
 ![Testing](https://img.shields.io/badge/Testing-Bats-orange?style=flat-square)
 ![ShellCheck](https://img.shields.io/badge/ShellCheck-Compliant-brightgreen?style=flat-square)
@@ -33,7 +33,7 @@
 ## TL;DR
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 gh auth login --scopes admin:org        # 未ログインの場合
 
 ./script/init.sh <your-org>             # ホスト準備 + 最初の runner を登録
@@ -323,7 +323,7 @@ exit します（不足項目をすべて列挙）。
 runner は `script/add-runner.sh` で登録：
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/install-deps.sh                # gh/jq/curl/sudo + gh auth login を導入
                                         # （設定済みならスキップ可；Docker+NVIDIA は事前に必要）
 
@@ -408,7 +408,7 @@ runner-group フラグのリセット(他ホストと共有の可能性)、こ�
 マシン消失 / OS 再インストール後：
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/init.sh <your-org>
 ./script/add-runner.sh org <other-org>
 ```

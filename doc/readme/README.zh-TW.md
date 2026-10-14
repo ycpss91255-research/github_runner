@@ -1,6 +1,6 @@
 # github_runner
 
-[![CI](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml)
+[![CI](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml)
 ![Language](https://img.shields.io/badge/Language-Bash-blue?style=flat-square)
 ![Testing](https://img.shields.io/badge/Testing-Bats-orange?style=flat-square)
 ![ShellCheck](https://img.shields.io/badge/ShellCheck-Compliant-brightgreen?style=flat-square)
@@ -33,7 +33,7 @@
 ## TL;DR
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 gh auth login --scopes admin:org        # 若尚未登入
 
 ./script/init.sh <your-org>             # 準備 host + 註冊第一個 runner
@@ -295,7 +295,7 @@ Docker 與 NVIDIA Container Toolkit 須先自行安裝（牽涉 kernel driver / 
 ——它們是佔位符,不是字面值。其他 runner 用 `script/add-runner.sh` 新增：
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/install-deps.sh                # 裝 gh/jq/curl/sudo + gh auth login
                                         # （已設定好可略過;Docker+NVIDIA 須先存在）
 
@@ -375,7 +375,7 @@ prompt,先預覽再確認:
 機器遺失 / 重灌後：
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/init.sh <your-org>
 ./script/add-runner.sh org <other-org>
 ```

@@ -897,5 +897,5 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 Implements [ADR-0012] in the consuming workspace repo.
 
 [ADR-0012]: https://github.com/ycpss91255-research/isaac/blob/main/doc/adr/0012-research-org-split-dual-org-runners.md
-[Unreleased]: https://github.com/ycpss91255-docker/github_runner/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/ycpss91255-docker/github_runner/releases/tag/v0.1.0
+[Unreleased]: https://github.com/ycpss91255-research/github_runner/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/ycpss91255-research/github_runner/releases/tag/v0.1.0

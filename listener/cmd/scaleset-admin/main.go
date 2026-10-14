@@ -35,7 +35,7 @@ import (
 
 	"github.com/actions/scaleset"
 
-	"github.com/ycpss91255-docker/github_runner/listener"
+	"github.com/ycpss91255-research/github_runner/listener"
 )
 
 // usage is printed for -h and for any usage error, so the two agree.
