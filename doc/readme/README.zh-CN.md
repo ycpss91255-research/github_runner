@@ -5,7 +5,6 @@
 ![Testing](https://img.shields.io/badge/Testing-Bats-orange?style=flat-square)
 ![ShellCheck](https://img.shields.io/badge/ShellCheck-Compliant-brightgreen?style=flat-square)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](../../LICENSE)
-[![codecov](https://codecov.io/gh/ycpss91255-docker/github_runner/branch/main/graph/badge.svg)](https://codecov.io/gh/ycpss91255-docker/github_runner)
 
 **[English](../../README.md)** | **[繁體中文](README.zh-TW.md)** | **[简体中文](README.zh-CN.md)** | **[日本語](README.ja.md)**
 
@@ -194,8 +193,8 @@ CI 每次 push / PR 跑 `lint` + `test` + `coverage-gate`，Go job 另外跑
 `coverage-go`。**覆盖率是 merge gate，不只是 metric**：两个下限都钉在
 `script/coverage-gate.sh`，报告低于下限就让 build 失败；`listener/cmd/` 不
 计入 Go 下限（那层是 wiring，改由 integration / system 层覆盖，见
-`doc/PRD.md`）。kcov 比纯 bats 慢 2-5×，这就是 gate 的代价。Codecov
-上传走 `CODECOV_TOKEN` repo secret。
+`doc/PRD.md`）。kcov 比纯 bats 慢 2-5×，这就是 gate 的代价。报告不会
+外传：下限在 repo 内强制，所以没有会挂掉的外部服务，也不必保管 token。
 
 ## 安全性说明
 

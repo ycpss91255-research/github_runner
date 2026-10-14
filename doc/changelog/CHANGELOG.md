@@ -60,6 +60,23 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   line with the resolved scope beside it, which matters most for a repository
   target, where naming the wrong one is an easy slip.
 
+### Removed
+
+- **The Codecov upload, and the badge in all four READMEs.** Coverage is already
+  a merge gate: `just coverage-gate` measures and enforces the floors in
+  `script/coverage-gate.sh`, and a report below one fails the build. The upload
+  added nothing to that verdict -- it carried `fail_ci_if_error: false`, so a
+  Codecov outage was invisible, and a missing `CODECOV_TOKEN` was equally
+  invisible, which is the shape of a step that cannot report its own failure.
+  What it did add was a secret to carry and a third-party service on the path
+  of a check whose number is already reproducible on a maintainer's machine.
+
+  This follows `ycpss91255-docker/base`, which uses no coverage service at all
+  and enforces the same way locally.
+
+  The historical changelog entries that describe the upload are left as they
+  are: they record what was true when they were written.
+
 ### Fixed
 
 - **`just --list` describes the recipes instead of trailing off mid-sentence**:

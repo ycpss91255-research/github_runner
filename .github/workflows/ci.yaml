@@ -163,15 +163,6 @@ jobs:
       # One recipe measures and enforces, so CI cannot drift from the local run.
       - name: run kcov coverage and enforce the bash floor
         run: just coverage-gate
-      - name: upload to Codecov
-        # fail_ci_if_error: false mirrors base/self-test.yaml — a Codecov
-        # upload glitch (or a missing token on forks) must not fail the job.
-        if: ${{ always() }}
-        uses: codecov/codecov-action@75cd11691c0faa626561e295848008c8a7dddffe # v5
-        with:
-          directory: ./coverage
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: false
 
   ci-rollup:
     # Single aggregator that branch protection requires, mirroring base's

@@ -5,7 +5,6 @@
 ![Testing](https://img.shields.io/badge/Testing-Bats-orange?style=flat-square)
 ![ShellCheck](https://img.shields.io/badge/ShellCheck-Compliant-brightgreen?style=flat-square)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](./LICENSE)
-[![codecov](https://codecov.io/gh/ycpss91255-docker/github_runner/branch/main/graph/badge.svg)](https://codecov.io/gh/ycpss91255-docker/github_runner)
 
 **[English](README.md)** | **[繁體中文](doc/readme/README.zh-TW.md)** | **[简体中文](doc/readme/README.zh-CN.md)** | **[日本語](doc/readme/README.ja.md)**
 
@@ -211,8 +210,9 @@ Go job runs `coverage-go`. Coverage is a merge gate, not just a metric: both
 floors are pinned in `script/coverage-gate.sh` and a report below one fails the
 build. `listener/cmd/` is excluded from the Go floor -- it is wiring, covered by
 the integration and system layers instead (see `doc/PRD.md`). kcov is 2-5x
-slower than plain bats, which is what a gate costs. Codecov upload uses the
-`CODECOV_TOKEN` repo secret.
+slower than plain bats, which is what a gate costs. The report is not sent
+anywhere: the floor is enforced in the repository, so there is no external
+service to be down or to hold a token for.
 
 ## Security model
 

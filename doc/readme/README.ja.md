@@ -5,7 +5,6 @@
 ![Testing](https://img.shields.io/badge/Testing-Bats-orange?style=flat-square)
 ![ShellCheck](https://img.shields.io/badge/ShellCheck-Compliant-brightgreen?style=flat-square)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](../../LICENSE)
-[![codecov](https://codecov.io/gh/ycpss91255-docker/github_runner/branch/main/graph/badge.svg)](https://codecov.io/gh/ycpss91255-docker/github_runner)
 
 **[English](../../README.md)** | **[繁體中文](README.zh-TW.md)** | **[简体中文](README.zh-CN.md)** | **[日本語](README.ja.md)**
 
@@ -205,8 +204,9 @@ CI は push / PR ごとに `lint` + `test` + `coverage-gate` を実行し、Go j
 2 つの下限は `script/coverage-gate.sh` に固定され、下限を下回るレポートは
 ビルドを失敗させます。`listener/cmd/` は Go の下限から除外します（wiring 層
 であり、integration / system 層で担保するため。`doc/PRD.md` 参照）。kcov は
-プレーンな bats より 2-5 倍遅く、それが gate の代価です。Codecov
-アップロードは `CODECOV_TOKEN` の repo secret 経由です。
+プレーンな bats より 2-5 倍遅く、それが gate の代価です。レポートは
+どこにも送信しません。下限は repo 内で強制するため、停止しうる外部
+サービスも、保持すべき token もありません。
 
 ## セキュリティモデル
 
