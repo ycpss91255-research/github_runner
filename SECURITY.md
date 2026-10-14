@@ -7,7 +7,7 @@ or pull requests.
 
 Use GitHub's **private vulnerability reporting** for this repository:
 **Security → Advisories → "Report a vulnerability"**
-(`https://github.com/ycpss91255-docker/github_runner/security/advisories/new`).
+(`https://github.com/ycpss91255-research/github_runner/security/advisories/new`).
 
 This opens a private advisory visible only to you and the maintainers. Please
 include:

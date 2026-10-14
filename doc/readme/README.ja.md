@@ -1,11 +1,10 @@
 # github_runner
 
-[![CI](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml)
+[![CI](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml)
 ![Language](https://img.shields.io/badge/Language-Bash-blue?style=flat-square)
 ![Testing](https://img.shields.io/badge/Testing-Bats-orange?style=flat-square)
 ![ShellCheck](https://img.shields.io/badge/ShellCheck-Compliant-brightgreen?style=flat-square)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](../../LICENSE)
-[![codecov](https://codecov.io/gh/ycpss91255-docker/github_runner/branch/main/graph/badge.svg)](https://codecov.io/gh/ycpss91255-docker/github_runner)
 
 **[English](../../README.md)** | **[繁體中文](README.zh-TW.md)** | **[简体中文](README.zh-CN.md)** | **[日本語](README.ja.md)**
 
@@ -34,7 +33,7 @@
 ## TL;DR
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 gh auth login --scopes admin:org        # 未ログインの場合
 
 ./script/init.sh <your-org>             # ホスト準備 + 最初の runner を登録
@@ -205,8 +204,9 @@ CI は push / PR ごとに `lint` + `test` + `coverage-gate` を実行し、Go j
 2 つの下限は `script/coverage-gate.sh` に固定され、下限を下回るレポートは
 ビルドを失敗させます。`listener/cmd/` は Go の下限から除外します（wiring 層
 であり、integration / system 層で担保するため。`doc/PRD.md` 参照）。kcov は
-プレーンな bats より 2-5 倍遅く、それが gate の代価です。Codecov
-アップロードは `CODECOV_TOKEN` の repo secret 経由です。
+プレーンな bats より 2-5 倍遅く、それが gate の代価です。レポートは
+どこにも送信しません。下限は repo 内で強制するため、停止しうる外部
+サービスも、保持すべき token もありません。
 
 ## セキュリティモデル
 
@@ -323,7 +323,7 @@ exit します（不足項目をすべて列挙）。
 runner は `script/add-runner.sh` で登録：
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/install-deps.sh                # gh/jq/curl/sudo + gh auth login を導入
                                         # （設定済みならスキップ可；Docker+NVIDIA は事前に必要）
 
@@ -408,7 +408,7 @@ runner-group フラグのリセット(他ホストと共有の可能性)、こ�
 マシン消失 / OS 再インストール後：
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/init.sh <your-org>
 ./script/add-runner.sh org <other-org>
 ```

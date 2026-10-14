@@ -21,7 +21,7 @@ import (
 
 	"github.com/actions/scaleset"
 
-	"github.com/ycpss91255-docker/github_runner/listener"
+	"github.com/ycpss91255-research/github_runner/listener"
 )
 
 // envOr returns the env var value, or a fallback when unset/empty.

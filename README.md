@@ -1,11 +1,10 @@
 # github_runner
 
-[![CI](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml)
+[![CI](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml)
 ![Language](https://img.shields.io/badge/Language-Bash-blue?style=flat-square)
 ![Testing](https://img.shields.io/badge/Testing-Bats-orange?style=flat-square)
 ![ShellCheck](https://img.shields.io/badge/ShellCheck-Compliant-brightgreen?style=flat-square)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](./LICENSE)
-[![codecov](https://codecov.io/gh/ycpss91255-docker/github_runner/branch/main/graph/badge.svg)](https://codecov.io/gh/ycpss91255-docker/github_runner)
 
 **[English](README.md)** | **[繁體中文](doc/readme/README.zh-TW.md)** | **[简体中文](doc/readme/README.zh-CN.md)** | **[日本語](doc/readme/README.ja.md)**
 
@@ -34,7 +33,7 @@
 ## TL;DR
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 gh auth login --scopes admin:org        # if not already
 
 ./script/init.sh <your-org>             # prep host + register first runner
@@ -211,8 +210,9 @@ Go job runs `coverage-go`. Coverage is a merge gate, not just a metric: both
 floors are pinned in `script/coverage-gate.sh` and a report below one fails the
 build. `listener/cmd/` is excluded from the Go floor -- it is wiring, covered by
 the integration and system layers instead (see `doc/PRD.md`). kcov is 2-5x
-slower than plain bats, which is what a gate costs. Codecov upload uses the
-`CODECOV_TOKEN` repo secret.
+slower than plain bats, which is what a gate costs. The report is not sent
+anywhere: the floor is enforced in the repository, so there is no external
+service to be down or to hold a token for.
 
 ## Security model
 
@@ -333,7 +333,7 @@ name(s) — they are placeholders, not literal values. Additional runners are
 added with `script/add-runner.sh`:
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/install-deps.sh                # install gh/jq/curl/sudo + gh auth login
                                         # (skip if already set up; Docker+NVIDIA must pre-exist)
 
@@ -422,7 +422,7 @@ Remove). See [Troubleshooting](#troubleshooting) for stuck states.
 After machine loss / reformat:
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/init.sh <your-org>
 ./script/add-runner.sh org <other-org>
 ```

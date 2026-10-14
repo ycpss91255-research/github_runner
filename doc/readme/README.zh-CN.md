@@ -1,11 +1,10 @@
 # github_runner
 
-[![CI](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-docker/github_runner/actions/workflows/ci.yaml)
+[![CI](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml/badge.svg)](https://github.com/ycpss91255-research/github_runner/actions/workflows/ci.yaml)
 ![Language](https://img.shields.io/badge/Language-Bash-blue?style=flat-square)
 ![Testing](https://img.shields.io/badge/Testing-Bats-orange?style=flat-square)
 ![ShellCheck](https://img.shields.io/badge/ShellCheck-Compliant-brightgreen?style=flat-square)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](../../LICENSE)
-[![codecov](https://codecov.io/gh/ycpss91255-docker/github_runner/branch/main/graph/badge.svg)](https://codecov.io/gh/ycpss91255-docker/github_runner)
 
 **[English](../../README.md)** | **[繁體中文](README.zh-TW.md)** | **[简体中文](README.zh-CN.md)** | **[日本語](README.ja.md)**
 
@@ -34,7 +33,7 @@
 ## TL;DR
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 gh auth login --scopes admin:org        # 若尚未登录
 
 ./script/init.sh <your-org>             # 准备 host + 注册第一个 runner
@@ -194,8 +193,8 @@ CI 每次 push / PR 跑 `lint` + `test` + `coverage-gate`，Go job 另外跑
 `coverage-go`。**覆盖率是 merge gate，不只是 metric**：两个下限都钉在
 `script/coverage-gate.sh`，报告低于下限就让 build 失败；`listener/cmd/` 不
 计入 Go 下限（那层是 wiring，改由 integration / system 层覆盖，见
-`doc/PRD.md`）。kcov 比纯 bats 慢 2-5×，这就是 gate 的代价。Codecov
-上传走 `CODECOV_TOKEN` repo secret。
+`doc/PRD.md`）。kcov 比纯 bats 慢 2-5×，这就是 gate 的代价。报告不会
+外传：下限在 repo 内强制，所以没有会挂掉的外部服务，也不必保管 token。
 
 ## 安全性说明
 
@@ -296,7 +295,7 @@ Docker 与 NVIDIA Container Toolkit 须先自行安装（牵涉 kernel driver / 
 ——它们是占位符,不是字面值。其他 runner 用 `script/add-runner.sh` 新增：
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/install-deps.sh                # 装 gh/jq/curl/sudo + gh auth login
                                         # （已设定好可略过;Docker+NVIDIA 须先存在）
 
@@ -376,7 +375,7 @@ prompt,先预览再确认:
 机器遗失 / 重装后：
 
 ```bash
-git clone https://github.com/ycpss91255-docker/github_runner.git && cd github_runner
+git clone https://github.com/ycpss91255-research/github_runner.git && cd github_runner
 ./script/init.sh <your-org>
 ./script/add-runner.sh org <other-org>
 ```

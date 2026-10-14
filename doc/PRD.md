@@ -714,8 +714,9 @@ Two properties make these gates rather than decoration:
   machine and in CI. That is the precondition for enforcing anything: a check
   that cannot be reproduced locally manufactures red that people learn to ignore.
 
-Codecov still receives the bash report; the floor is enforced in the repo rather
-than delegated to it.
+The report is not uploaded anywhere. The floor is enforced in the repo, which
+is what makes it a gate; an external service could only display the number, and
+a display that can be down is one more thing between a change and its verdict.
 
 ### Recorded facts about the current check surface
 
@@ -726,8 +727,9 @@ than delegated to it.
   therefore does not mean the CI `go` or `coverage` jobs will pass.
 - Coverage is measured for both languages: bash with kcov, the Go core with
   `go test -coverprofile`.
-- The repo contains no `.shellcheckrc`, no `.golangci.yml` and no `codecov.yml`
-  — every check runs on its tool's default configuration.
+- The repo contains no `.shellcheckrc` and no `.golangci.yml` — every check runs
+  on its tool's default configuration. There is no coverage-service config
+  either, because no coverage service is used.
 
 ---
 
