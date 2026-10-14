@@ -415,7 +415,7 @@ td {
 <!-- ============================================================ -->
 <h2><span class="num">3.</span> 部署拓撲</h2>
 
-<p class="desc">一台 host 上的檔案配置與 systemd 管理。<code>deploy-listener.sh</code> 是唯一入口指令。</p>
+<p class="desc">一台 host 上的檔案配置與 systemd 管理。入口指令是 <code>sudo just deploy</code>，它執行 <code>script/deploy-listener.sh</code>。</p>
 
 <figure>
 <svg viewBox="0 0 880 340" role="img" aria-label="Host filesystem layout: prefix, config, systemd, RUNNER_HOME">
@@ -465,7 +465,7 @@ td {
   <text x="750" y="250" text-anchor="middle" font-size="8" fill="var(--text-1)">classic runners (legacy)</text>
   <text x="440" y="288" text-anchor="middle" font-size="8" fill="var(--text-3)">SEC-3: all rm -rf anchored under this root</text>
 </svg>
-<figcaption>部署拓撲。<code>deploy-listener.sh --org-url ...</code> 一個指令建立以上所有：build + install binary、建 service user、寫 env file（0600，存 token）、安裝 systemd unit、enable + start、驗證。idempotent，re-run 跳過已完成的步驟。</figcaption>
+<figcaption>部署拓撲。<code>sudo just deploy --config-url ...</code> 一個指令建立以上所有：build + install binary、建 service user、寫 env file（0600，存 token）、安裝 systemd unit、enable + start、驗證。idempotent，re-run 跳過已完成的步驟。</figcaption>
 </figure>
 
 <!-- ============================================================ -->
@@ -609,8 +609,8 @@ td {
   <circle cx="62" cy="296" r="14" fill="var(--go)" stroke="none"/>
   <text x="62" y="300" text-anchor="middle" font-size="11" font-weight="600" fill="var(--bg)">3</text>
   <rect x="92" y="266" width="758" height="166" rx="6" fill="var(--go-fill)" stroke="var(--go)" stroke-width="1.5"/>
-  <text x="110" y="286" font-size="10" font-weight="600" fill="var(--go)">sudo ./script/deploy-listener.sh --org-url https://github.com/&lt;org&gt;</text>
-  <text x="110" y="301" font-size="8" fill="var(--text-3)">先跑 --dry-run 看計畫; token 是互動 prompt, 沒有 --token 旗標</text>
+  <text x="110" y="286" font-size="10" font-weight="600" fill="var(--go)">sudo just deploy --config-url https://github.com/&lt;org&gt;</text>
+  <text x="110" y="301" font-size="8" fill="var(--text-3)">單一 repo 用 https://github.com/&lt;owner&gt;/&lt;repo&gt;; 先跑 --dry-run 看計畫; token 是互動 prompt, 沒有 --token 旗標</text>
 
   <rect x="110" y="310" width="345" height="112" rx="5" fill="var(--github-fill)" stroke="var(--github)" stroke-width="1"/>
   <text x="282" y="329" text-anchor="middle" font-size="9" font-weight="600" fill="var(--github)">GitHub side</text>
@@ -660,7 +660,7 @@ td {
   <text x="120" y="76" text-anchor="middle" font-size="8" fill="var(--text-2)">吞吐量 × N</text>
   <line x1="210" y1="52" x2="248" y2="52" stroke="var(--arrow)" stroke-width="1.2" marker-end="url(#ah)"/>
   <rect x="250" y="20" width="400" height="64" rx="5" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
-  <text x="266" y="42" font-size="8" fill="var(--text-1)">在新機器上: sudo ./script/deploy-listener.sh --skip-github</text>
+  <text x="266" y="42" font-size="8" fill="var(--text-1)">在新機器上: sudo just deploy --skip-github</text>
   <text x="266" y="58" font-size="8" fill="var(--text-2)">scale set 已存在, GitHub 側完全不需動作</text>
   <text x="266" y="74" font-size="8" fill="var(--text-3)">多台 listener 同時連同一個 scale set, GitHub 負責分派</text>
   <rect x="668" y="30" width="182" height="44" rx="5" fill="var(--container-soft)" stroke="var(--container)" stroke-width="1"/>
@@ -726,13 +726,13 @@ td {
 <!-- ============================================================ -->
 <h2><span class="num">7.</span> Deploy 流程</h2>
 
-<p class="desc"><code>deploy-listener.sh</code> 的執行路徑 -- 第 5 節 Phase 3 的展開。</p>
+<p class="desc"><code>just deploy</code> 執行的 <code>script/deploy-listener.sh</code> -- 第 5 節 Phase 3 的展開。</p>
 
 <figure>
 <svg viewBox="0 0 880 420" role="img" aria-label="deploy-listener.sh flow: GitHub side + Local side">
   <!-- Start -->
   <rect x="340" y="10" width="200" height="30" rx="15" fill="var(--bash-fill)" stroke="var(--bash)" stroke-width="1.5"/>
-  <text x="440" y="30" text-anchor="middle" font-size="9" fill="var(--bash)">deploy-listener.sh --org-url</text>
+  <text x="440" y="30" text-anchor="middle" font-size="9" fill="var(--bash)">just deploy --config-url</text>
 
   <line x1="440" y1="40" x2="440" y2="56" stroke="var(--arrow)" stroke-width="1.2" marker-end="url(#ah)"/>
 
@@ -794,12 +794,12 @@ td {
 <!-- ============================================================ -->
 <h2><span class="num">8.</span> Teardown 流程</h2>
 
-<p class="desc"><code>teardown-listener.sh</code>：deploy 的反向操作，只影響本機。</p>
+<p class="desc"><code>just teardown</code> 執行的 <code>script/teardown-listener.sh</code>：deploy 的反向操作，只影響本機。</p>
 
 <figure>
 <svg viewBox="0 0 880 240" role="img" aria-label="teardown-listener.sh flow: stop, disable, remove unit, remove env, remove prefix">
   <rect x="340" y="10" width="200" height="30" rx="15" fill="var(--bash-fill)" stroke="var(--bash)" stroke-width="1.5"/>
-  <text x="440" y="30" text-anchor="middle" font-size="9" fill="var(--bash)">teardown-listener.sh</text>
+  <text x="440" y="30" text-anchor="middle" font-size="9" fill="var(--bash)">just teardown</text>
 
   <line x1="440" y1="40" x2="440" y2="56" stroke="var(--arrow)" stroke-width="1.2" marker-end="url(#ah)"/>
 

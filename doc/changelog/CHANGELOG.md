@@ -79,6 +79,15 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- **The architecture overview teaches the deploy command as it is now**
+  (#117): `doc/arch/overview.html` predated the `--config-url` rename and the
+  `just` operator recipes, so it spelt the target flag `--org-url` and named only
+  the scripts. It now writes `sudo just deploy --config-url ...` and
+  `sudo just teardown`, and the zero-to-first-job section shows the
+  single-repository target (`https://github.com/<owner>/<repo>`) beside the
+  organisation one -- the target a personal repo needs, which the old wording
+  hid. `--org-url` still works as an alias; nothing about deployment changed.
+
 - **`just --list` describes the recipes instead of trailing off mid-sentence**:
   `just` takes only the comment line immediately above a recipe, and most
   recipes here carry a multi-line explanatory block -- so what surfaced was each
