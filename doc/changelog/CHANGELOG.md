@@ -79,6 +79,16 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- **A `.claude` or `.agents` symlink is now ignored (#119).** A worktree gets
+  the main checkout's hooks by symlinking `<worktree>/.claude` to the main
+  checkout's `.claude/`, but `.gitignore` listed `.claude/` and `.agents/` with
+  a trailing slash, which matches only a real directory -- so the symlink sat in
+  the untracked set, one `git add -A` away from being committed. Both patterns
+  are now slash-less and root-anchored (`/.claude`, `/.agents`), the same form
+  as `/runners`, and the comment no longer claims the directory is unrelated to
+  the repo's tooling: it holds this repo's hooks (#114) and stays untracked by
+  choice.
+
 - **The architecture overview teaches the deploy command as it is now**
   (#117): `doc/arch/overview.html` predated the `--config-url` rename and the
   `just` operator recipes, so it spelt the target flag `--org-url` and named only

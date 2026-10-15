@@ -1,14 +1,18 @@
-# Per-user Claude Code workspace state (project-level config and skills).
-# These live alongside the repo for local development convenience but are
-# not part of the github_runner tooling and should not be tracked here.
-.claude/
+# Per-user Claude Code setup: hooks, commands, skills and memory. The hooks
+# do enforce this repo's rules (#114), but the directory is kept untracked on
+# purpose as per-user setup. A worktree picks it up by symlinking
+# <worktree>/.claude -> <main checkout>/.claude, so the pattern has no
+# trailing slash: a slash-terminated pattern matches only a real directory and
+# would leave the symlink untracked (#119).
+/.claude
 skills-lock.json
 # Same class, different installer path: `.agents/skills/` is the skills
 # installer's own tree, duplicating much of `.claude/skills/` (both are
 # enumerated in the already-ignored skills-lock.json). Per-user state, not
 # repo tooling -- it was merely never listed, so it sat untracked AND
-# unignored, one `git add -A` away from being committed by accident.
-.agents/
+# unignored, one `git add -A` away from being committed by accident. No
+# trailing slash, for the same symlink reason as /.claude above.
+/.agents
 
 # Runner install state. Default RUNNER_HOME (see lib/common.sh) is
 # <repo_root>/runners/, containing .bin/<runner-tarball> and per-target
