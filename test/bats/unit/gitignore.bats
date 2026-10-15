@@ -6,6 +6,8 @@
 # slash-less or the symlink surfaces as untracked.
 
 setup() {
+  # The kcov image carries no git; the test-tools image (just test) does.
+  command -v git >/dev/null 2>&1 || skip "git not available in this image"
   ROOT="${BATS_TEST_DIRNAME}/../../.."
   SCRATCH="$(mktemp -d)"
   git -C "${SCRATCH}" init -q
@@ -13,7 +15,7 @@ setup() {
 }
 
 teardown() {
-  rm -rf "${SCRATCH}"
+  if [ -n "${SCRATCH:-}" ]; then rm -rf "${SCRATCH}"; fi
 }
 
 @test "a real .claude/ directory is ignored (#119)" {
